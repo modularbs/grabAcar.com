@@ -1,0 +1,55 @@
+﻿@model ReservationViewModel
+@{ViewBag.Title = "Pre Order Details";}
+
+<h2>Pre Order Details</h2>
+
+@using (Ajax.BeginForm("Reservation", "Car", new AjaxOptions { HttpMethod = "POST", OnSuccess = "reservationSummary", OnFailure = "showError" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <div class="editor-label">
+        @Html.Label("Rental Dates")
+        @Html.DisplayTextFor(model => model.DateStart) - @Html.DisplayTextFor(model => model.DateEnd)
+
+    </div>
+    <div class="editor-label">
+        @Html.LabelFor(model => model.CarModelName)
+        @Html.DisplayTextFor(model => model.CarModelName)
+
+    </div>
+
+    <div class="editor-label">
+        @Html.LabelFor(model => model.DailyRate)
+        @Html.DisplayTextFor(model => model.DailyRate)
+    </div>
+
+    <div class="editor-label">
+        @Html.LabelFor(model => model.DayLateRate)
+        @Html.DisplayTextFor(model => model.DayLateRate)
+    </div>
+
+    <div class="editor-label">
+        @Html.Label("Cost")
+        @CalcHelper.CalcCarRetalPrice(Model.DailyRate, Model.DateStart, Model.DateEnd)
+    </div>
+
+    <p>
+        <input type="submit" value="Place Order" class="ui-button ui-widget ui-state-default ui-corner-all" onmouseout="$(this).removeClass('ui-state-hover');" onmouseover="$(this).addClass('ui-state-hover');" />
+        <input type="hidden" value="@Model.CarId" name="carId" />
+        <input type="hidden" value="@Model.CarModelName" name="CarModelName" />
+        <input type="hidden" value="@Model.DateStart" name="DateStart" />
+        <input type="hidden" value="@Model.DateEnd" name="DateEnd" />
+    </p>
+
+    <div id="dialog-summary">
+
+        <p><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span></p>
+
+    </div>
+}
+
+@section scripts {
+    <script src="~/Scripts/reservation.js"></script>
+
+}

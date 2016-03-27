@@ -1,0 +1,53 @@
+﻿@if (Request.IsAuthenticated)
+{
+    <span class="userName">
+        Hello
+        @User.Identity.Name |
+    </span>
+
+    <ul class="nav">
+        <li>@Html.ActionLink("Home", "Index", "Home") </li>
+
+        <li>@Html.ActionLink("grabAcar", "Search", "Car")</li>
+
+        @if (User.IsInRole("Customer"))
+        {
+            <li>@Html.ActionLink("My Reservations", "History", "Car")</li>
+        }
+
+        @if (User.IsInRole("Employee"))
+        {
+            <li>@Html.ActionLink("returnAcar ", "CarReturn", "Car")</li>
+        }
+
+        @if (User.IsInRole("Manager"))
+        {
+
+            <li>@Html.ActionLink("Reservations", "CustomersHistory", "Car")</li>
+
+        }
+        @if (User.IsInRole("Administrator"))
+        {
+            <li>@Html.ActionLink("Manage Cars", "CarManage", "Car")</li>
+        }
+
+        <li>@Html.ActionLink("Logout", "Logout", "Account")</li>
+    </ul>
+
+
+}
+else
+{
+    <span class="userName">
+        Hello Guest |
+    </span>
+
+    <ul class="nav">
+        <li>@Html.ActionLink("Home", "Index", "Home") </li>
+        <li>@Html.ActionLink("Login", "Login", "Account")</li>
+        <li>@Html.ActionLink("Sign Up", "Register", "Account")</li>
+        <li>@Html.ActionLink("grabAcar", "Search", "Car")</li>
+    </ul>
+
+}
+

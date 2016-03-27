@@ -1,0 +1,94 @@
+﻿@model SearchViewModel
+
+@{ViewBag.Title = "grabNsearch a Car for Rent";}
+
+<h2>grabNsearch a Car for Rent:</h2>
+
+@using (Ajax.BeginForm("Search", "Car", new AjaxOptions { HttpMethod = "POST", OnSuccess = "showCarResult", OnFailure = "showError" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <table>
+        <tr>
+            <td>@Html.LabelFor(model => model.DateStart)</td>
+            <td>@Html.TextBoxFor(model => model.DateStart, new { type = "date" })</td>
+            <td>@Html.ValidationMessageFor(model => model.DateStart)</td>
+        </tr>
+
+        <tr>
+            <td>@Html.LabelFor(model => model.DateEnd)</td>
+            <td>@Html.TextBoxFor(model => model.DateEnd, new { type = "date" })</td>
+            <td>@Html.ValidationMessageFor(model => model.DateEnd)</td>
+        </tr>
+
+        <tr><td colspan="2"><br /></td></tr>
+
+        <tr>
+            <td>@Html.LabelFor(model => model.ManufacturerId)</td>
+            <td>@Html.DropDownList("ManufacturerId", "---Choose---")</td>
+            <td>@Html.ValidationMessageFor(model => model.ManufacturerId)</td>
+        </tr>
+
+        <tr>
+            <td>@Html.LabelFor(model => model.CarModelId)</td>
+            <td>@Html.DropDownList("CarModelId", "---Choose---")</td>
+            <td>@Html.ValidationMessageFor(model => model.CarModelId)</td>
+        </tr>
+
+        <tr><td colspan="2"><br /></td></tr>
+
+        <tr>
+            <td>@Html.LabelFor(model => model.TransmissionId)</td>
+            <td>@Html.DropDownList("TransmissionId", "---Choose---")</td>
+            <td>@Html.ValidationMessageFor(model => model.TransmissionId)</td>
+        </tr>
+
+        <tr>
+            <td>@Html.LabelFor(model => model.ManufactureYear)</td>
+            <td>@Html.DropDownList("ManufactureYear", "---Choose---")</td>
+            <td>@Html.ValidationMessageFor(model => model.ManufactureYear)</td>
+        </tr>
+
+        <tr><td colspan="2"><br /></td></tr>
+
+        <tr>
+            <td>@Html.Label("Wildcard Search")</td>
+            <td>@Html.EditorFor(model => model.freeText)</td>
+            <td>@Html.ValidationMessageFor(model => model.freeText)</td>
+        </tr>
+    </table>
+
+
+    <br />
+    <p>
+        <input type="submit" class="ui-button ui-widget ui-state-default ui-corner-all" onmouseout="$(this).removeClass('ui-state-hover');" onmouseover="$(this).addClass('ui-state-hover');" id="btnSearch" value="Search" />
+    </p>
+
+    <div id="table-contain" class="ui-widget">
+        <table id="table" class="ui-widget ui-widget-content">
+            <thead>
+                <tr class='ui-widget-header'>
+                    <th><span>Manufacturer</span><span></span></th>
+                    <th><span>Car Model</span><span></span></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+
+    <div id="HistoryDiv">
+        <h3>Search History</h3>
+        <div>
+            <table border="1" id="SearchHistoryTbl"></table>
+        </div>
+    </div>
+
+
+}
+
+@section scripts {
+    <link href="~/Content/Car.css" rel="stylesheet" />
+    <script src="~/Scripts/search.js"></script>
+}

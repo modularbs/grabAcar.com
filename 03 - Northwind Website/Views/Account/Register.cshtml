@@ -1,0 +1,133 @@
+﻿@model RegisterViewModel
+
+@{
+    ViewBag.Title = "Sign Up Form";
+}
+
+<h2>Sign Up</h2>
+
+@*@using (Ajax.BeginForm("Register", "Account",
+    new AjaxOptions { HttpMethod = "POST", OnFailure = "showError" }))*@
+@using (Html.BeginForm())
+{
+
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+
+    <div class="editor-label">
+        @Html.LabelFor(model => model.FirstName)
+    </div>
+    <div class="editor-field">
+        @Html.EditorFor(model => model.FirstName, new { required = "required" })
+        @Html.ValidationMessageFor(model => model.FirstName)
+    </div>
+
+    <div class="editor-label">
+        @Html.LabelFor(model => model.LastName)
+    </div>
+    <div class="editor-field">
+        @Html.EditorFor(model => model.LastName, new { required = "required" })
+        @Html.ValidationMessageFor(model => model.LastName)
+    </div>
+
+
+    <div class="editor-label">
+        @Html.LabelFor(model => model.Username)
+    </div>
+    <div class="editor-field">
+        @Html.EditorFor(model => model.Username, new { required = "required", max = 50, min = 4 })
+        @Html.ValidationMessageFor(model => model.Username)
+    </div>
+
+    <div class="editor-label">
+        @Html.LabelFor(model => model.Password)
+    </div>
+    <div class="editor-field">
+        @Html.EditorFor(model => model.Password, new { required = "required", max = 50, min = 4 })
+        @Html.ValidationMessageFor(model => model.Password)
+    </div>
+
+    <div class="editor-label">
+        @Html.LabelFor(model => model.ConfirmPassword)
+    </div>
+    <div class="editor-field">
+        @Html.EditorFor(model => model.ConfirmPassword, new { required = "required", max = 50, min = 4 })
+        @Html.ValidationMessageFor(model => model.ConfirmPassword)
+    </div>
+
+    <div class="editor-label">
+        @Html.LabelFor(model => model.CityId)
+    </div>
+    <div class="editor-field">
+        @Html.DropDownList("CityId")
+        @Html.ValidationMessageFor(model => model.CityId)
+    </div>
+
+    <div class="editor-label">
+        @Html.LabelFor(model => model.RegionName)
+    </div>
+    <div class="editor-field">
+        @Html.EditorFor(model => model.RegionName)
+        @Html.ValidationMessageFor(model => model.RegionName)
+    </div>
+
+    <div class="editor-label">
+        @Html.LabelFor(model => model.Address)
+    </div>
+    <div class="editor-field">
+        @Html.EditorFor(model => model.Address)
+        @Html.ValidationMessageFor(model => model.Address)
+    </div>
+
+    <div class="editor-label">
+        @Html.LabelFor(model => model.IdNumber)
+    </div>
+    <div class="editor-field">
+        @Html.EditorFor(model => model.IdNumber, new { required = "required" })
+        @Html.ValidationMessageFor(model => model.IdNumber)
+    </div>
+
+    <div class="editor-label">
+        @Html.LabelFor(model => model.DateOfBirth)
+    </div>
+    <div class="editor-field">
+        @Html.EditorFor(model => model.DateOfBirth)
+        @Html.ValidationMessageFor(model => model.DateOfBirth)
+    </div>
+
+    <div class="editor-label">
+        @Html.LabelFor(model => model.Gender)
+    </div>
+    <div class="editor-field">
+        @Html.EditorFor(model => model.Gender)
+        @Html.ValidationMessageFor(model => model.Gender)
+    </div>
+
+    <div class="editor-label">
+        @Html.LabelFor(model => model.Email)
+    </div>
+    <div class="editor-field">
+        @Html.EditorFor(model => model.Email, new { required = "required", type = "email" })
+        @Html.ValidationMessageFor(model => model.Email)
+    </div>
+
+    <div class="editor-label">
+        @Html.LabelFor(model => model.DisplayPicture)
+    </div>
+    <div class="editor-field">
+        @Html.EditorFor(model => model.DisplayPicture)
+        @Html.ValidationMessageFor(model => model.DisplayPicture)
+    </div>
+
+    <p>
+        <input type="submit" value="Register" class="ui-button ui-widget ui-state-default ui-corner-all" onmouseout="$(this).removeClass('ui-state-hover');" onmouseover="$(this).addClass('ui-state-hover');" />
+    </p>
+}
+
+
+
+@section scripts {
+ 
+<script src="~/Scripts/register.js"></script>
+}

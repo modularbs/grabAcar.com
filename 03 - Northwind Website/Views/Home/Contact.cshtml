@@ -1,0 +1,32 @@
+﻿@model ContactViewModel
+
+@{
+    ViewBag.Title = "Contact";
+}
+
+<h2>Contact</h2>
+@using (Html.BeginForm())
+{ @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <div class="editor-label">
+        @Html.LabelFor(model => model.Subject)
+    </div>
+    <div class="editor-field">
+        @Html.EditorFor(model => model.Subject, new { required = "required" })
+        @Html.ValidationMessageFor(model => model.Subject)
+    </div>
+    <div class="editor-label">
+        @Html.LabelFor(model => model.Message)
+    </div>
+    <div class="editor-field">
+        @Html.TextAreaFor(model => model.Message, new { rows = 10, columns = 40, required = "required" })
+        @Html.ValidationMessageFor(model => model.Message)
+    </div>
+    <br />
+    <input id="btnSend" value="Send" />
+}
+
+@section scripts {
+    <script src="~/Scripts/contact.js"></script>
+}

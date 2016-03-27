@@ -1,0 +1,73 @@
+﻿@model CarReturnViewModel
+@{ ViewBag.Title = "Return a Car"; }
+
+<h2>CarReturn</h2>
+
+@using (Ajax.BeginForm("CarReturn", "Car", new AjaxOptions { HttpMethod = "POST", OnSuccess = "showTables", OnFailure = "showError" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <div class="editor-label">
+        @Html.LabelFor(model => model.CarNumber)
+        @Html.EditorFor(model => model.CarNumber, new { type = "number" })
+
+    </div>
+    <div class="editor-label">
+        @Html.LabelFor(model => model.ReservationId)
+        @Html.EditorFor(model => model.ReservationId, new { type = "number" })
+
+    </div>
+    <div class="editor-label">
+        @Html.LabelFor(model => model.CustomerId)
+        @Html.EditorFor(model => model.CustomerId, new { type = "number" })
+
+    </div>
+    <div class="editor-label">
+        @Html.LabelFor(model => model.CustomerIdentity)
+        @Html.EditorFor(model => model.CustomerIdentity)
+
+    </div>
+    <div class="editor-label">
+        @Html.LabelFor(model => model.CustomerFirstName)
+        @Html.EditorFor(model => model.CustomerFirstName)
+
+    </div>
+    <div class="editor-label">
+        @Html.LabelFor(model => model.CustomerLastName)
+        @Html.EditorFor(model => model.CustomerLastName)
+
+    </div>
+    <p>
+        <input id="btnFindCar" type="submit" value="Find Car" class="ui-button ui-widget ui-state-default ui-corner-all" onmouseout="$(this).removeClass('ui-state-hover');" onmouseover="$(this).addClass('ui-state-hover');" />
+    </p>
+
+    <div id="table-contain" class="ui-widget">
+        <table class="ui-widget ui-widget-content" id="table">
+            <thead>
+                <tr class='ui-widget-header'>
+                    <th><span>Reservation #</span><span></span></th>
+                    <th><span>Car Number</span><span></span></th>
+                    <th><span>Customer Id</span><span></span></th>
+                    <th><span>Rental Start</span><span></span></th>
+                    <th><span>Rental End</span><span></span></th>
+                    <th><span>Name</span><span></span></th>
+                    <th><span>Id Number</span><span></span></th>
+                    <th><span>Model</span><span></span></th>
+                    <th><span>Create Time</span><span></span></th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+
+}
+
+
+
+@section scripts {
+    <link href="~/Content/Car.css" rel="stylesheet" />
+    <script src="~/Scripts/carReturn.js"></script>
+
+}

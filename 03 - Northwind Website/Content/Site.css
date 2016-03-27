@@ -1,0 +1,156 @@
+﻿.pager {
+    background-color: lightgray;
+    position: static !important;
+    display: inline-flex !important;
+}
+
+body {
+    font-size: .85em;
+    font-family: "Segoe UI", Verdana, Helvetica, Sans-Serif;
+    color: #232323;
+    background-color: #fff;
+}
+
+header, footer, nav, section {
+    display: block;
+}
+
+#dialog-message {
+    display: none;
+}
+
+/* Styles for basic forms
+-----------------------------------------------------------*/
+fieldset {
+    border: 1px solid #ddd;
+    padding: 0 1.4em 1.4em 1.4em;
+    margin: 0 0 1.5em 0;
+}
+
+legend {
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+textarea {
+    min-height: 75px;
+}
+
+.editor-label {
+    margin: 1em 0 0 0;
+}
+
+.editor-field {
+    margin: 0.5em 0 0 0;
+}
+
+
+/* Styles for validation helpers
+-----------------------------------------------------------*/
+.field-validation-error {
+    color: #f00;
+}
+
+.field-validation-valid {
+    display: none;
+}
+
+.input-validation-error {
+    border: 1px solid #f00;
+    background-color: #fee;
+}
+
+.validation-summary-errors {
+    font-weight: bold;
+    color: #f00;
+}
+
+.validation-summary-valid {
+    display: none;
+}
+
+
+/* Styles for table
+-----------------------------------------------------------*/
+div#table-contain {
+    width: auto;
+    margin: 20px 0;
+}
+
+    div#table-contain table {
+        margin: 1em 0;
+        box-shadow: 10px 10px 5px #888888;
+        border: 1px solid #000000;
+        -moz-border-radius-bottomleft: 16px;
+        -webkit-border-bottom-left-radius: 16px;
+        border-bottom-left-radius: 16px;
+        -moz-border-radius-bottomright: 16px;
+        -webkit-border-bottom-right-radius: 16px;
+        border-bottom-right-radius: 16px;
+        -moz-border-radius-topright: 16px;
+        -webkit-border-top-right-radius: 16px;
+        border-top-right-radius: 16px;
+        -moz-border-radius-topleft: 16px;
+        -webkit-border-top-left-radius: 16px;
+        border-top-left-radius: 16px;
+    }
+
+        div#table-contain table td, div#table-contain table th {
+            border: 1px solid #eee;
+            padding: .6em 10px;
+            text-align: left;
+        }
+
+        div#table-contain table tr:last-child td:last-child {
+            -moz-border-radius-bottomright: 16px;
+            -webkit-border-bottom-right-radius: 16px;
+            border-bottom-right-radius: 16px;
+        }
+
+        div#table-contain table tr:first-child th:first-child {
+            -moz-border-radius-topleft: 16px;
+            -webkit-border-top-left-radius: 16px;
+            border-top-left-radius: 16px;
+        }
+
+        div#table-contain table tr:first-child th:last-child {
+            -moz-border-radius-topright: 16px;
+            -webkit-border-top-right-radius: 16px;
+            border-top-right-radius: 16px;
+        }
+
+        div#table-contain table tr:last-child td:first-child {
+            -moz-border-radius-bottomleft: 16px;
+            -webkit-border-bottom-left-radius: 16px;
+            border-bottom-left-radius: 16px;
+        }
+
+        div#table-contain table tr:last-child td {
+            border-width: 0px 1px 0px 0px;
+        }
+
+        div#table-contain table tr td:last-child {
+            border-width: 0px 0px 1px 0px;
+        }
+
+        div#table-contain table tr:last-child td:last-child {
+            border-width: 0px 0px 0px 0px;
+        }
+
+
+        div#table-contain table tr:first-child th span:first-of-type {
+            float: left;
+        }
+
+        div#table-contain table tr:first-child th span:last-of-type {
+            cursor: pointer;
+        }
+
+        div#table-contain table tr:hover td {
+            background-color: gray;
+        }
+
+h2 {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-decoration-color: darkblue;
+}

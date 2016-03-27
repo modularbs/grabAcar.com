@@ -1,0 +1,74 @@
+﻿@{
+    ViewBag.Title = "Reservations";
+}
+<h2>Reservations</h2>
+@if (ViewBag.ReservationList == null || (ViewBag.ReservationList as IEnumerable<diary>).Count() == 0)
+{
+    <p>No Reservations</p>
+}
+else
+{
+    <table>
+        <tr>
+            <td>
+                <div id="pager" class="pager">
+                    <img src="../../Images/first.png" class="first" />
+                    <img src="../../Images/prev.png" class="prev" />
+                    <input type="text" class="pagedisplay" />
+                    <img src="../../Images/next.png" class="next" />
+                    <img src="../../Images/last.png" class="last" />
+                    <select class="pagesize">
+                        <option selected="selected" value="5">5</option>
+                        <option value="10">10</option>
+                        <option value="20">20</option>
+                        <option value="30">30</option>
+                        <option value="40">40</option>
+                    </select>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div id="table-contain" class="ui-widget">
+
+                    <table id="table" class="ui-widget ui-widget-content">
+                        <thead>
+                            <tr class="ui-widget-header">
+                                <th><span>Reservation #</span><span></span></th>
+                                <th><span>Order Time</span><span></span></th>
+                                <th><span>Customer</span><span></span></th>
+                                <th><span>Car Number</span><span></span></th>
+                                <th><span>Rental Start</span><span></span></th>
+                                <th><span>Rental End</span><span></span></th>
+                                <th><span>Actual Rental End</span><span></span></th>
+                                <th><span>Order Price</span><span></span></th>
+                                <th><span>Manufacturer</span><span></span></th>
+                                <th><span>Model</span><span></span></th>
+                                <th><span>Transmission Type</span><span></span></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (diary diary in ViewBag.ReservationList)
+                            {
+                                <tr class="ui-widget-content">
+                                    <td>@diary.line_code</td>
+                                    <td>@diary.create_time</td>
+                                    <td>@(diary.User.first_name + " " + diary.User.last_name)</td>
+                                    <td>@diary.car.car_number</td>
+                                    <td>@(diary.date_start != null ? Convert.ToDateTime(diary.date_start).ToString("dd/MM/yyyy") : "")</td>
+                                    <td>@(diary.date_end != null ? Convert.ToDateTime(diary.date_end).ToString("dd/MM/yyyy") : "")</td>
+                                    <td>@(diary.actual_date_end != null ? Convert.ToDateTime(diary.actual_date_end).ToString("dd/MM/yyyy") : "")</td>
+                                    <td>@CalcHelper.CalcCarRetalPriceWithLate(diary.car.car_models.daily_rate, diary.car.car_models.day_late_rate, diary.date_start, diary.date_end, diary.actual_date_end)</td>
+                                    <td>@diary.car.car_models.manufacturer.manufacturer_name</td>
+                                    <td>@diary.car.car_models.model_name</td>
+                                    <td>@diary.car.car_models.transmission_types.transmission_name</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+
+                </div>
+            </td>
+        </tr>
+    </table>
+}

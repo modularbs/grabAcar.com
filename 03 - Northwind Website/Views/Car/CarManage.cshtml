@@ -1,0 +1,110 @@
+﻿@model CarManagerViewModel
+
+@{
+    ViewBag.Title = "CarManage";
+}
+
+<h2>Cars Management</h2>
+
+<input id="btnAddCar" type="button" value="Add a New Car" />
+<br /><br />
+@if (ViewBag.CarsList == null || (ViewBag.CarsList as IEnumerable<car>).Count() == 0)
+{
+    <p>No Cars</p>
+}
+else
+{
+    <table>
+        <tr>
+            <td>
+                <div id="pager" class="pager">
+                    <img src="../../Images/first.png" class="first" />
+                    <img src="../../Images/prev.png" class="prev" />
+                    <input type="text" class="pagedisplay" />
+                    <img src="../../Images/next.png" class="next" />
+                    <img src="../../Images/last.png" class="last" />
+                    <select class="pagesize">
+                        <option selected="selected" value="5">5</option>
+                        <option value="10">10</option>
+                        <option value="20">20</option>
+                        <option value="30">30</option>
+                        <option value="40">40</option>
+                    </select>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div id="table-contain" class="ui-widget">
+
+                    <table id="table" class="ui-widget ui-widget-content">
+                        <thead>
+                            <tr class="ui-widget-header">
+                                <th><span>Car Number</span><span></span></th>
+                                <th><span>Model</span><span></span></th>
+                                <th><span>Mileage</span><span></span></th>
+                                <th><span>Photo</span><span></span></th>
+                                <th><span>Is for Rent?</span><span></span></th>
+                                <th>-Actions-</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            @foreach (car car in ViewBag.CarsList)
+                            {
+                                <tr id="@car.car_id" class="ui-widget-content">
+                                    <td>@car.car_number</td>
+                                    <td>@car.car_models.model_name</td>
+                                    <td>@car.mileage</td>
+                                    <td><a href="@car.photo" target="_blank"><img src="@car.photo" alt="car photo" width="80" height="60" /></a></td>
+                                    <td>@car.rentable</td>
+                                    <td class="tdClick"><a onclick="updateCar(@car.car_id, @car.car_number, @car.car_model_id,@car.mileage, @("'"+car.photo+"'") ,@("'" + car.rentable.ToString() + "'"), @car.is_active);" href="#">update</a>|<a onclick="deleteCar(@car.car_id, @car.car_number);" href="#">delete</a></td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </td>
+        </tr>
+    </table>
+}
+
+<div id="dialog-form">
+
+    <form>
+        <fieldset>
+            @Html.LabelFor(model => model.CarNumber)
+            @Html.TextBoxFor(model => model.CarNumber, new { type = "number", required = "required" })
+            @Html.ValidationMessageFor(model => model.CarNumber)
+
+            @Html.LabelFor(model => model.CarModelId)
+            @Html.DropDownList("CarModelId", "---Choose---")
+            @Html.ValidationMessageFor(model => model.CarModelId)
+
+            @Html.LabelFor(model => model.Mileage)
+            @Html.TextBoxFor(model => model.Mileage, new { type = "number", required = "required" })
+            @Html.ValidationMessageFor(model => model.Mileage)
+
+            @Html.LabelFor(model => model.Photo)
+            @Html.TextBoxFor(model => model.Photo, new { @class = "photo", required = "required" })
+
+            @Html.LabelFor(model => model.Rentable)
+            @Html.CheckBoxFor(model => model.Rentable, new { required = "required" })
+
+            <!-- Allow form submission with keyboard without duplicating the dialog button -->
+            <input type="submit" tabindex="-1" style="position:absolute; top:-1000px">
+        </fieldset>
+    </form>
+</div>
+
+<div id="dialog-confirm" title="Car Delete">
+
+    <p><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span>Are you sure??</p>
+
+</div>
+
+
+@section scripts {
+    <link href="~/Content/CarManage.css" rel="stylesheet" />
+    <script src="~/Scripts/carManage.js"></script>
+}

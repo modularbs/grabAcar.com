@@ -1,0 +1,17 @@
+﻿.trHover {
+    background-color: white;
+    height: 24px;
+}
+
+    .trHover:hover {
+        background-color: orange;
+        cursor: pointer;
+    }
+
+#HistoryDiv {
+    display: none;
+}
+
+#ErrorMessage {
+    display: none;
+}
