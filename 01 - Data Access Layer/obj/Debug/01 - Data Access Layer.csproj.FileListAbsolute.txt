@@ -1,0 +1,8 @@
+D:\@desktop\@net\@JohnBryce.MyProjects\grabAcar (solution + sql script)\grabAcar\01 - Data Access Layer\bin\Debug\01 - Data Access Layer.dll.config
+D:\@desktop\@net\@JohnBryce.MyProjects\grabAcar (solution + sql script)\grabAcar\01 - Data Access Layer\bin\Debug\01 - Data Access Layer.dll
+D:\@desktop\@net\@JohnBryce.MyProjects\grabAcar (solution + sql script)\grabAcar\01 - Data Access Layer\bin\Debug\01 - Data Access Layer.pdb
+D:\@desktop\@net\@JohnBryce.MyProjects\grabAcar (solution + sql script)\grabAcar\01 - Data Access Layer\bin\Debug\EntityFramework.dll
+D:\@desktop\@net\@JohnBryce.MyProjects\grabAcar (solution + sql script)\grabAcar\01 - Data Access Layer\bin\Debug\MVC Foolproof Validation.dll
+D:\@desktop\@net\@JohnBryce.MyProjects\grabAcar (solution + sql script)\grabAcar\01 - Data Access Layer\bin\Debug\EntityFramework.xml
+D:\@desktop\@net\@JohnBryce.MyProjects\grabAcar (solution + sql script)\grabAcar\01 - Data Access Layer\obj\Debug\01 - Data Access Layer.dll
+D:\@desktop\@net\@JohnBryce.MyProjects\grabAcar (solution + sql script)\grabAcar\01 - Data Access Layer\obj\Debug\01 - Data Access Layer.pdb

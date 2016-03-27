@@ -1,0 +1,293 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="grabAcarModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="branch">
+    <Key>
+      <PropertyRef Name="branch_id" />
+    </Key>
+    <Property Name="branch_id" Type="Int32" Nullable="false" />
+    <Property Name="is_active" Type="Int32" Nullable="false" />
+    <Property Name="branch_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="city_id" Type="Int32" Nullable="false" />
+    <Property Name="location_latitude" Type="Decimal" Precision="4" Scale="2" Nullable="false" />
+    <Property Name="location_longitude" Type="Decimal" Precision="4" Scale="2" Nullable="false" />
+    <NavigationProperty Name="city" Relationship="Self.FK_branches_cities" FromRole="branches" ToRole="cities" />
+    <NavigationProperty Name="cars" Relationship="Self.FK_cars_branches" FromRole="branches" ToRole="cars" />
+  </EntityType>
+  <EntityType Name="car_models">
+    <Key>
+      <PropertyRef Name="car_model_id" />
+    </Key>
+    <Property Name="car_model_id" Type="Int32" Nullable="false" />
+    <Property Name="is_active" Type="Int32" Nullable="false" />
+    <Property Name="model_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="manufacturer_id" Type="Int32" Nullable="false" />
+    <Property Name="transmission_id" Type="Int32" Nullable="false" />
+    <Property Name="manufacture_year" Type="Int32" Nullable="false" />
+    <Property Name="daily_rate" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="day_late_rate" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="remarks" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="manufacturer" Relationship="Self.FK_car_models_manufacturers" FromRole="car_models" ToRole="manufacturers" />
+    <NavigationProperty Name="cars" Relationship="Self.FK_cars_car_models" FromRole="car_models" ToRole="cars" />
+    <NavigationProperty Name="transmission_types" Relationship="grabAcarModel.FK_car_models_transmission_types" FromRole="car_models" ToRole="transmission_types" />
+  </EntityType>
+  <EntityType Name="car">
+    <Key>
+      <PropertyRef Name="car_id" />
+    </Key>
+    <Property Name="car_id" Type="Int32" Nullable="false" />
+    <Property Name="is_active" Type="Int32" Nullable="false" />
+    <Property Name="car_number" Type="Int32" Nullable="false" />
+    <Property Name="car_model_id" Type="Int32" Nullable="false" />
+    <Property Name="mileage" Type="Int32" Nullable="false" />
+    <Property Name="photo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="available_for_rent" Type="Boolean" Nullable="false" />
+    <Property Name="rentable" Type="Boolean" Nullable="false" />
+    <Property Name="owner_branch" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="branch" Relationship="Self.FK_cars_branches" FromRole="cars" ToRole="branches" />
+    <NavigationProperty Name="car_models" Relationship="Self.FK_cars_car_models" FromRole="cars" ToRole="car_models" />
+    <NavigationProperty Name="diaries" Relationship="Self.FK_diary_cars" FromRole="cars" ToRole="diary" />
+  </EntityType>
+  <EntityType Name="city">
+    <Key>
+      <PropertyRef Name="city_id" />
+    </Key>
+    <Property Name="city_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="country_id" Type="Int32" Nullable="false" />
+    <Property Name="city_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="branches" Relationship="Self.FK_branches_cities" FromRole="cities" ToRole="branches" />
+    <NavigationProperty Name="country" Relationship="Self.FK_cities_countries" FromRole="cities" ToRole="countries" />
+  </EntityType>
+  <EntityType Name="country">
+    <Key>
+      <PropertyRef Name="country_id" />
+    </Key>
+    <Property Name="country_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="country_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="cities" Relationship="Self.FK_cities_countries" FromRole="countries" ToRole="cities" />
+  </EntityType>
+  <EntityType Name="diary">
+    <Key>
+      <PropertyRef Name="line_code" />
+    </Key>
+    <Property Name="line_code" Type="Int32" Nullable="false" />
+    <Property Name="is_active" Type="Int32" Nullable="false" />
+    <Property Name="car_id" Type="Int32" />
+    <Property Name="create_time" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="customer_id" Type="Int32" Nullable="false" />
+    <Property Name="date_start" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="date_end" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="time_start" Type="Time" Nullable="false" Precision="7" />
+    <Property Name="time_end" Type="Time" Nullable="false" Precision="7" />
+    <Property Name="actual_date_start" Type="DateTime" Precision="0" />
+    <Property Name="actual_date_end" Type="DateTime" Precision="0" />
+    <Property Name="actual_time_start" Type="Time" Precision="7" />
+    <Property Name="actual_time_end" Type="Time" Precision="7" />
+    <NavigationProperty Name="car" Relationship="Self.FK_diary_cars" FromRole="diary" ToRole="cars" />
+    <NavigationProperty Name="User" Relationship="Self.FK_diary_users" FromRole="diary" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="manufacturer">
+    <Key>
+      <PropertyRef Name="manufacturer_id" />
+    </Key>
+    <Property Name="manufacturer_id" Type="Int32" Nullable="false" />
+    <Property Name="is_active" Type="Int32" Nullable="false" />
+    <Property Name="manufacturer_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="car_models" Relationship="Self.FK_car_models_manufacturers" FromRole="manufacturers" ToRole="car_models" />
+  </EntityType>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="RoleID" />
+    </Key>
+    <Property Name="RoleID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RoleName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Users" Relationship="Self.UserVsRoles" FromRole="Roles" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="is_active" Type="Int32" Nullable="false" />
+    <Property Name="first_name" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="last_name" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="city_id" Type="Int32" />
+    <Property Name="region_name" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+    <Property Name="address" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="id_number" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="date_of_birth" Type="DateTime" Precision="0" />
+    <Property Name="gender" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+    <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="display_picture" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <NavigationProperty Name="diaries" Relationship="Self.FK_diary_users" FromRole="Users" ToRole="diary" />
+    <NavigationProperty Name="Roles" Relationship="Self.UserVsRoles" FromRole="Users" ToRole="Roles" />
+  </EntityType>
+  <Association Name="FK_branches_cities">
+    <End Role="cities" Type="Self.city" Multiplicity="1" />
+    <End Role="branches" Type="Self.branch" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="cities">
+        <PropertyRef Name="city_id" />
+      </Principal>
+      <Dependent Role="branches">
+        <PropertyRef Name="city_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_cars_branches">
+    <End Role="branches" Type="Self.branch" Multiplicity="1" />
+    <End Role="cars" Type="Self.car" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="branches">
+        <PropertyRef Name="branch_id" />
+      </Principal>
+      <Dependent Role="cars">
+        <PropertyRef Name="owner_branch" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_car_models_manufacturers">
+    <End Role="manufacturers" Type="Self.manufacturer" Multiplicity="1" />
+    <End Role="car_models" Type="Self.car_models" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="manufacturers">
+        <PropertyRef Name="manufacturer_id" />
+      </Principal>
+      <Dependent Role="car_models">
+        <PropertyRef Name="manufacturer_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_cars_car_models">
+    <End Role="car_models" Type="Self.car_models" Multiplicity="1" />
+    <End Role="cars" Type="Self.car" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="car_models">
+        <PropertyRef Name="car_model_id" />
+      </Principal>
+      <Dependent Role="cars">
+        <PropertyRef Name="car_model_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_diary_cars">
+    <End Role="cars" Type="Self.car" Multiplicity="0..1" />
+    <End Role="diary" Type="Self.diary" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="cars">
+        <PropertyRef Name="car_id" />
+      </Principal>
+      <Dependent Role="diary">
+        <PropertyRef Name="car_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_cities_countries">
+    <End Role="countries" Type="Self.country" Multiplicity="1" />
+    <End Role="cities" Type="Self.city" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="countries">
+        <PropertyRef Name="country_id" />
+      </Principal>
+      <Dependent Role="cities">
+        <PropertyRef Name="country_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_diary_users">
+    <End Role="Users" Type="Self.User" Multiplicity="1" />
+    <End Role="diary" Type="Self.diary" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="diary">
+        <PropertyRef Name="customer_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="UserVsRoles">
+    <End Role="Roles" Type="Self.Role" Multiplicity="*" />
+    <End Role="Users" Type="Self.User" Multiplicity="*" />
+  </Association>
+  <EntityContainer Name="grabAcarEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="branches" EntityType="Self.branch" />
+    <EntitySet Name="car_models" EntityType="Self.car_models" />
+    <EntitySet Name="cars" EntityType="Self.car" />
+    <EntitySet Name="cities" EntityType="Self.city" />
+    <EntitySet Name="countries" EntityType="Self.country" />
+    <EntitySet Name="diaries" EntityType="Self.diary" />
+    <EntitySet Name="manufacturers" EntityType="Self.manufacturer" />
+    <EntitySet Name="Roles" EntityType="Self.Role" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <EntitySet Name="Users" EntityType="Self.User" />
+    <AssociationSet Name="FK_branches_cities" Association="Self.FK_branches_cities">
+      <End Role="cities" EntitySet="cities" />
+      <End Role="branches" EntitySet="branches" />
+    </AssociationSet>
+    <AssociationSet Name="FK_cars_branches" Association="Self.FK_cars_branches">
+      <End Role="branches" EntitySet="branches" />
+      <End Role="cars" EntitySet="cars" />
+    </AssociationSet>
+    <AssociationSet Name="FK_car_models_manufacturers" Association="Self.FK_car_models_manufacturers">
+      <End Role="manufacturers" EntitySet="manufacturers" />
+      <End Role="car_models" EntitySet="car_models" />
+    </AssociationSet>
+    <AssociationSet Name="FK_cars_car_models" Association="Self.FK_cars_car_models">
+      <End Role="car_models" EntitySet="car_models" />
+      <End Role="cars" EntitySet="cars" />
+    </AssociationSet>
+    <AssociationSet Name="FK_diary_cars" Association="Self.FK_diary_cars">
+      <End Role="cars" EntitySet="cars" />
+      <End Role="diary" EntitySet="diaries" />
+    </AssociationSet>
+    <AssociationSet Name="FK_cities_countries" Association="Self.FK_cities_countries">
+      <End Role="countries" EntitySet="countries" />
+      <End Role="cities" EntitySet="cities" />
+    </AssociationSet>
+    <AssociationSet Name="FK_diary_users" Association="Self.FK_diary_users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="diary" EntitySet="diaries" />
+    </AssociationSet>
+    <AssociationSet Name="UserVsRoles" Association="Self.UserVsRoles">
+      <End Role="Roles" EntitySet="Roles" />
+      <End Role="Users" EntitySet="Users" />
+    </AssociationSet>
+    <EntitySet Name="transmission_types" EntityType="grabAcarModel.transmission_types" />
+    <AssociationSet Name="FK_car_models_transmission_types" Association="grabAcarModel.FK_car_models_transmission_types">
+      <End Role="transmission_types" EntitySet="transmission_types" />
+      <End Role="car_models" EntitySet="car_models" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="transmission_types">
+    <Key>
+      <PropertyRef Name="transmission_id" />
+    </Key>
+    <Property Name="transmission_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="transmission_name" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="car_models" Relationship="grabAcarModel.FK_car_models_transmission_types" FromRole="transmission_types" ToRole="car_models" />
+  </EntityType>
+  <Association Name="FK_car_models_transmission_types">
+    <End Type="grabAcarModel.transmission_types" Role="transmission_types" Multiplicity="1" />
+    <End Type="grabAcarModel.car_models" Role="car_models" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="transmission_types">
+        <PropertyRef Name="transmission_id" />
+      </Principal>
+      <Dependent Role="car_models">
+        <PropertyRef Name="transmission_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>
