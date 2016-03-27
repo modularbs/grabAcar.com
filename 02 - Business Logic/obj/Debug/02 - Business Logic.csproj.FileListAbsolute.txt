@@ -1,0 +1,10 @@
+D:\@desktop\@net\@JohnBryce.MyProjects\grabAcar (solution + sql script)\grabAcar\02 - Business Logic\bin\Debug\02 - Business Logic.dll.config
+D:\@desktop\@net\@JohnBryce.MyProjects\grabAcar (solution + sql script)\grabAcar\02 - Business Logic\bin\Debug\02 - Business Logic.dll
+D:\@desktop\@net\@JohnBryce.MyProjects\grabAcar (solution + sql script)\grabAcar\02 - Business Logic\bin\Debug\02 - Business Logic.pdb
+D:\@desktop\@net\@JohnBryce.MyProjects\grabAcar (solution + sql script)\grabAcar\02 - Business Logic\bin\Debug\01 - Data Access Layer.dll
+D:\@desktop\@net\@JohnBryce.MyProjects\grabAcar (solution + sql script)\grabAcar\02 - Business Logic\bin\Debug\EntityFramework.dll
+D:\@desktop\@net\@JohnBryce.MyProjects\grabAcar (solution + sql script)\grabAcar\02 - Business Logic\bin\Debug\01 - Data Access Layer.pdb
+D:\@desktop\@net\@JohnBryce.MyProjects\grabAcar (solution + sql script)\grabAcar\02 - Business Logic\bin\Debug\EntityFramework.xml
+D:\@desktop\@net\@JohnBryce.MyProjects\grabAcar (solution + sql script)\grabAcar\02 - Business Logic\obj\Debug\02 - Business Logic.csprojResolveAssemblyReference.cache
+D:\@desktop\@net\@JohnBryce.MyProjects\grabAcar (solution + sql script)\grabAcar\02 - Business Logic\obj\Debug\02 - Business Logic.dll
+D:\@desktop\@net\@JohnBryce.MyProjects\grabAcar (solution + sql script)\grabAcar\02 - Business Logic\obj\Debug\02 - Business Logic.pdb
